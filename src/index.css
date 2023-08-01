@@ -22,3 +22,38 @@ header {
   padding: 1rem;
 }
 
+.searchContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.bookCard {
+  width: 400px;
+  height: auto;
+  display: flexbox;
+  flex-direction: column;
+  border: 5px solid blue;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+h3, h5 {
+  font-weight: normal;
+}
+
+h5 {
+  font-style: italic;
+}
+
+.bookCard img {
+  object-fit: none;
+  padding: 1rem;
+}
+
+.bookCover {
+  float: left;
+  min-height: 200px;
+  vertical-align: middle;
+}

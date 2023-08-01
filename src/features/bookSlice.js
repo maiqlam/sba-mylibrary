@@ -10,6 +10,7 @@ export const fetchBook = createAsyncThunk(
             id: book.id,
             title: book.volumeInfo.title,
             authors: book.volumeInfo.authors,
+            coverImg: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : null,
         }));
         return books;
     }
