@@ -3,20 +3,24 @@ import SearchForm from "../components/SearchForm";
 
 const Main = () => {
     const books = useSelector((state) => state.books.books);
-    console.log(books);
+    // console.log(books);
 
     return (
-        <div className="main">
-        <h1>MyLibrary</h1>
-        <SearchForm />
-        <ul>
-            {books.map((book) => (
-                <li key={book.id}>
-                    {book.title} by {book.authors}
-                </li>
+
+        <div>
+            <SearchForm />
+            <div className="searchContainer">
+                {books.map((book) => (
+                <ul key={book.id} className="bookCard">
+                    {book.title} by {book.authors ? book.authors.join(', ') : 'Unknown'}
+                </ul>
             ))}
-        </ul>
-    </div>
+            </div>
+            
+        </div>
+        
+        
+
     );
 }
 

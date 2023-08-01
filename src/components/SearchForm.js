@@ -11,13 +11,13 @@ export default function SearchForm() {
         dispatch(fetchBook(searchTerm));
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="searchBar">
             <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button type="submit">Search</button>
+            <button type="submit" className="searchBtn">Search</button>
         </form>
     )
 }
