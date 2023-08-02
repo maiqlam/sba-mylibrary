@@ -12,8 +12,11 @@ const BookCard = ({ book, onDetailsClick }) => {
                 {/* </div>
                 <div className="bookAuthor"> */}
                 <h5>{book.authors ? book.authors.join(', ') : 'Unknown'}</h5>
-                <button onClick={() => onDetailsClick(book)}>Details</button>
+                <div className="cardBtns">
+                    <button onClick={() => onDetailsClick(book)}>Details</button>
                 <button>Add to Bookshelf</button>
+                </div>
+                
             </div>
         </ul>
     );
