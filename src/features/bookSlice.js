@@ -11,15 +11,42 @@ export const fetchBook = createAsyncThunk(
             title: book.volumeInfo.title,
             authors: book.volumeInfo.authors,
             coverImg: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : null,
+            publisher: book.volumeInfo.publisher,
+            publishedDate: book.volumeInfo.publishedDate,
+            description: book.volumeInfo.description,
+            pageCount: book.volumeInfo.pageCount,
+            genre: book.volumeInfo.categories,
+            // selfLink: book.selfLink,
         }));
         return books;
     }
 )
 
+// export const fetchBookDetails = createAsyncThunk(
+//     "bookDetails/fetchBookDetails",
+//     async (selfLink) => {
+//         const response = await axios.get(`${selfLink}`);
+//         const book = response.data;
+//         const details = {
+//             id: book.id,
+//             title: book.volumeInfo.title,
+//             authors: book.volumeInfo.authors,
+//             coverImgLg: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.extraLarge : null,
+//             publisher: book.volumeInfo.publisher,
+//             publishedDate: book.volumeInfo.publishedDate,
+//             description: book.volumeInfo.description,
+//             pageCount: book.volumeInfo.pageCount,
+//             genre: book.volumeInfo.categories,
+//         };
+//         return details;
+//     }
+// )
+
 const bookSlice = createSlice({
     name: "books",
     initialState: {
         books: [],
+        // bookDetails: null,
 
     },
     reducers: {
@@ -29,6 +56,9 @@ const bookSlice = createSlice({
         builder.addCase(fetchBook.fulfilled, (state, action) => {
             state.books = action.payload
         });
+        // builder.addCase(fetchBookDetails.fulfilled, (state, action) => {
+        //     state.bookDetails = action.payload
+        // });
     },
 })
 

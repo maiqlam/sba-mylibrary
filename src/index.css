@@ -43,13 +43,20 @@ header {
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.25);
 }
 
-h3, h5 {
+h3, h4, h5, p {
   font-weight: normal;
+  text-indent: 2%;
+  line-height: 1;
 }
 
-h5 {
+h4, h5 {
   font-style: italic;
 }
+
+/* h4 {
+  text-align: right;
+  font-style: italic;
+} */
 
 .bookCard img {
   object-fit: none;
@@ -58,7 +65,7 @@ h5 {
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.856);
 }
 
-.bookCover {
+.bookCover, .bookCoverLg {
   float: left;
   min-height: 200px;
   align-items: center;
@@ -69,6 +76,11 @@ h5 {
 
 .bookCover img {
   max-height: 100%;
+}
+
+.bookCoverLg img {
+  height: 400px;
+  padding-right: 10px;
 }
 
 .bookTitle {
@@ -84,12 +96,22 @@ h5 {
   background-color: white;
   padding: 20px;
   border: 1px solid black;
+  width: 900px;
+}
+
+.description {
+  /* border: 1px solid tan; */
+  background-color: rgba(140, 196, 210, 0.219);
+  padding: 1rem;
+  margin: 1rem;
 }
 
 .close {
   position: absolute;
-  top: 10px;
+  top: 0;
   right: 10px;
-  font-size: 24px;
+  font-size: 44px;
   cursor: pointer;
+  font-weight: 700;
+  /* padding: 1rem; */
 }
