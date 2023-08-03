@@ -46,11 +46,28 @@ const bookSlice = createSlice({
     name: "books",
     initialState: {
         books: [],
+        myBookshelf: [],
         // bookDetails: null,
 
     },
     reducers: {
-
+        addBook: (state, action) => {
+            state.myBookshelf.push(action.payload);
+        },
+        updateBook: (state, action) => {
+            const { bookId, status } = action.payload;
+            const bookIndex = state.myBookshelf.findIndex(book => book.id === bookId);
+            if (bookIndex !== -1) {
+                state.myBookshelf[bookIndex].status = status;
+            }
+        },
+        removeBook: (state, action) => {
+            const bookId = action.payload;
+            state.myBookshelf = state.myBookshelf.filter(book => book.id !== bookId);
+        },
+        resetSearchResults: (state) => {
+            state.books = [];
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchBook.fulfilled, (state, action) => {
@@ -61,5 +78,7 @@ const bookSlice = createSlice({
         // });
     },
 })
+
+export const { addBook, updateBook, removeBook, resetSearchResults } = bookSlice.actions;
 
 export default bookSlice.reducer;

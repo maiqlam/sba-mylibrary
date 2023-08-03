@@ -1,6 +1,12 @@
-const BookCard = ({ book, onDetailsClick }) => {
+import { addBook } from "../features/bookSlice";
+
+const BookCard = ({ book, onDetailsClick, onAddToBookshelf }) => {
     const titleWords = book.title.split(' ');
     const shortTitle = titleWords.slice(0, 12).join(' ');
+
+    const handleAddToBookshelf = () => {
+        addBook(book);
+    }
 
     return (
         <ul key={book.id} className="bookCard">
@@ -14,7 +20,7 @@ const BookCard = ({ book, onDetailsClick }) => {
                 <h5>{book.authors ? book.authors.join(', ') : 'Unknown'}</h5>
                 <div className="cardBtns">
                     <button onClick={() => onDetailsClick(book)}>Details</button>
-                <button>Add to Bookshelf</button>
+                <button onClick={handleAddToBookshelf}>Add to Bookshelf</button>
                 </div>
                 
             </div>

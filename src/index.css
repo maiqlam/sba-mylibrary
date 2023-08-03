@@ -17,6 +17,12 @@ header {
   text-align: center;
 }
 
+a, a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+
 .searchBar {
   display: flex;
   justify-content: center;
@@ -46,6 +52,10 @@ header {
 .cardBtns {
   bottom: 0;
   right: 0;
+}
+
+h2 {
+  font-weight: normal;
 }
 
 h3, h4, h5, p {
@@ -102,6 +112,10 @@ h4, h5 {
   padding: 20px;
   border: 1px solid black;
   width: 900px;
+}
+
+.bookDetails h3 {
+  font-weight: bold;
 }
 
 .description {

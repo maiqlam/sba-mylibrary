@@ -1,12 +1,19 @@
 import React from "react";
 import Main from "./pages/Main";
+import MyBookshelf from "./pages/MyBookshelf";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+
 
 function App() {
   return (
-    <div className="App">
-    <header><h1>MyLibrary</h1></header>
-      <Main />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/bookshelf" element={<MyBookshelf />} />
+      </Routes>
+    </Router>
+    
   );
 }
 
