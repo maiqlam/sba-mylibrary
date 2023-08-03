@@ -1,11 +1,19 @@
-import { addBook } from "../features/bookSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { addBook, removeBook } from "../features/bookSlice";
 
-const BookCard = ({ book, onDetailsClick, onAddToBookshelf }) => {
+const BookCard = ({ book, onDetailsClick }) => {
     const titleWords = book.title.split(' ');
     const shortTitle = titleWords.slice(0, 12).join(' ');
+    const dispatch = useDispatch();
+    const myBookshelf = useSelector(state => state.books.myBookshelf);
+    const isInBookshelf = myBookshelf.some(b => b.id === book.id);
 
     const handleAddToBookshelf = () => {
-        addBook(book);
+        dispatch(addBook(book));
+    }
+
+    const handleRemoveFromBookshelf = () => {
+        dispatch(removeBook(book.id));
     }
 
     return (
@@ -15,14 +23,15 @@ const BookCard = ({ book, onDetailsClick, onAddToBookshelf }) => {
             </div>
             <div className="bookTitle">
                 <h3>{titleWords.length > 12 ? shortTitle + '...' : shortTitle}</h3>
-                {/* </div>
-                <div className="bookAuthor"> */}
                 <h5>{book.authors ? book.authors.join(', ') : 'Unknown'}</h5>
                 <div className="cardBtns">
                     <button onClick={() => onDetailsClick(book)}>Details</button>
-                <button onClick={handleAddToBookshelf}>Add to Bookshelf</button>
+                    {isInBookshelf ? (
+                        <button onClick={handleRemoveFromBookshelf}>Remove from Bookshelf</button>
+                    ) : (
+                        <button onClick={handleAddToBookshelf}>Add to Bookshelf</button>
+                    )}
                 </div>
-                
             </div>
         </ul>
     );

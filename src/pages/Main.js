@@ -31,7 +31,7 @@ const Main = () => {
                         <BookCard key={book.id} book={book} onDetailsClick={handleDetailsClick} />
                     ))
                 ) : (
-                    <p className="intro">Welcome to MyLibrary!<br /> Search from our database of over thousands of published texts and discover your next read, or build your own virtual bookshelf to keep track of your reads! </p>
+                    <p className="intro">Welcome to MyLibrary!<br /><br /> Search from our database of over thousands of published texts and discover your next read, or build your own virtual bookshelf to keep track of your reads! </p>
                 )}
             </div>
             {selectedBook && (

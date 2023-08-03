@@ -1,23 +1,17 @@
-import { useEffect } from 'react';
-import { addBook } from '../features/bookSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBook, removeBook } from '../features/bookSlice';
 
-const BookDetails = ({ selectedBook, onClose, onAddToBookshelf }) => {
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (selectedBook && !event.target.closest('.bookDetails')) {
-                onClose();
-            }
-        }
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        }
-    }, [selectedBook, onClose]);
-
-    if (!selectedBook) return null;
+const BookDetails = ({ selectedBook, onClose }) => {
+    const dispatch = useDispatch();
+    const myBookshelf = useSelector(state => state.books.myBookshelf);
+    const isInBookshelf = selectedBook && myBookshelf.some(b => b.id === selectedBook.id);
 
     const handleAddToBookshelf = () => {
-        addBook(selectedBook);
+        dispatch(addBook(selectedBook));
+    }
+
+    const handleRemoveFromBookshelf = () => {
+        dispatch(removeBook(selectedBook.id));
     }
 
     return (
@@ -36,7 +30,11 @@ const BookDetails = ({ selectedBook, onClose, onAddToBookshelf }) => {
                 <h5>Publisher: {selectedBook.publisher ? selectedBook.publisher : 'N/A'}</h5>
                 <h5>Published Date: {selectedBook.publishedDate ? selectedBook.publishedDate : 'N/A'}</h5>
                 <h5>Literature genre: {selectedBook.genre ? selectedBook.genre : 'N/A'}</h5>
-                <button className="detailsBtn" onClick={handleAddToBookshelf}>Add to Bookshelf</button>
+                {isInBookshelf ? (
+                    <button className="detailsBtn" onClick={handleRemoveFromBookshelf}>Remove from Bookshelf</button>
+                ) : (
+                    <button className="detailsBtn" onClick={handleAddToBookshelf}>Add to Bookshelf</button>
+                )}
             </div>
             
         </div>

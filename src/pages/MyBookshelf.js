@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { HeaderNav } from '../components/HeaderNav';
+import BookCard from '../components/BookCard';
 
 const MyBookshelf = () => {
     const myBookshelf = useSelector(state => state.books.myBookshelf);
@@ -9,10 +10,7 @@ const MyBookshelf = () => {
             <HeaderNav />
             <ul>
                 {myBookshelf.map(book => (
-                    <li key={book.id}>
-                        <h3>{book.title}</h3>
-                        <p>Status: {book.status}</p>
-                    </li>
+                    <BookCard key={book.id} book={book} />
                 ))}
             </ul>
         </div>
