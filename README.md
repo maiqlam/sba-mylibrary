@@ -25,4 +25,4 @@ MyLibrary utilizes React for UI build and Redux for state management, and is wri
 
 ## Clone instructions
 To view MyLibrary locally, run `npm install` upon cloning within project's root directory. 
-Next, run `npm start` to run app in development mode. App will be viewable within [http://localhost:3000].
+Next, run `npm start` to run app in development mode. App will be viewable within http://localhost:3000.
