@@ -9,8 +9,8 @@ const BookCard = ({ book, onDetailsClick }) => {
     const isInBookshelf = myBookshelf.some(b => b.id === book.id);
 
     const handleAddToBookshelf = () => {
-        dispatch(addBook(book));
-    }
+        dispatch(addBook({...book, status: 'Unshelved'}));
+    }    
 
     const handleRemoveFromBookshelf = () => {
         dispatch(removeBook(book.id));

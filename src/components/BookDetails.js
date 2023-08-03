@@ -7,8 +7,8 @@ const BookDetails = ({ selectedBook, onClose }) => {
     const isInBookshelf = selectedBook && myBookshelf.some(b => b.id === selectedBook.id);
 
     const handleAddToBookshelf = () => {
-        dispatch(addBook(selectedBook));
-    }
+        dispatch(addBook({...selectedBook, status: 'Unshelved'}));
+    }    
 
     const handleRemoveFromBookshelf = () => {
         dispatch(removeBook(selectedBook.id));

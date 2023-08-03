@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchBook = createAsyncThunk(
@@ -21,6 +21,9 @@ export const fetchBook = createAsyncThunk(
         return books;
     }
 )
+
+export const updateStatus = createAction('books/updateStatus');
+
 
 // export const fetchBookDetails = createAsyncThunk(
 //     "bookDetails/fetchBookDetails",
@@ -73,9 +76,11 @@ const bookSlice = createSlice({
         builder.addCase(fetchBook.fulfilled, (state, action) => {
             state.books = action.payload
         });
-        // builder.addCase(fetchBookDetails.fulfilled, (state, action) => {
-        //     state.bookDetails = action.payload
-        // });
+        builder.addCase(updateStatus, (state, action) => {
+            const { id, status } = action.payload;
+            const index = state.myBookshelf.findIndex(book => book.id === id);
+            state.myBookshelf[index].status = status;
+        });
     },
 })
 
