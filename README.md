@@ -26,3 +26,6 @@ MyLibrary utilizes React for UI build and Redux for state management, and is wri
 ## Clone instructions
 To view MyLibrary locally, run `npm install` upon cloning within project's root directory. 
 Next, run `npm start` to run app in development mode. App will be viewable within http://localhost:3000.
+
+## Improvements to be made
+Currently, bookshelf data is stored within Redux library and is only viable in a single session. Features to be tested in the future can include storing bookshelf data within localStorage to allow data to persist across multiple sessions. In addition to the user's bookshelf data being stored after session is closed, this function can also be used to store other information regarding the user's session, such as search history and books that have been viewed or previously removed from bookshelf.
