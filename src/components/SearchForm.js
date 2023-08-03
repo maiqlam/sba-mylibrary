@@ -10,6 +10,10 @@ export default function SearchForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!searchTerm) {
+            alert('Please enter a search term.');
+            return;
+        }
         nav('/');
         dispatch(fetchBook(searchTerm));
     }
