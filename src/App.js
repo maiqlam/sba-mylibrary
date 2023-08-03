@@ -3,8 +3,6 @@ import Main from "./pages/Main";
 import MyBookshelf from "./pages/MyBookshelf";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-
-
 function App() {
   return (
     <Router>

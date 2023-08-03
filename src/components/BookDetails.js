@@ -1,18 +1,37 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addBook, removeBook } from '../features/bookSlice';
+import { useEffect } from 'react';
 
+// Component for additional book info when user selects 'details' button on search result item 
 const BookDetails = ({ selectedBook, onClose }) => {
     const dispatch = useDispatch();
     const myBookshelf = useSelector(state => state.books.myBookshelf);
     const isInBookshelf = selectedBook && myBookshelf.some(b => b.id === selectedBook.id);
 
+// Add to bookshelf function defaults book into 'unshelved' category initially
     const handleAddToBookshelf = () => {
         dispatch(addBook({...selectedBook, status: 'Unshelved'}));
     }    
 
+// If book exists in bookshelf, user has option to remove item through search results
     const handleRemoveFromBookshelf = () => {
         dispatch(removeBook(selectedBook.id));
     }
+
+// Additional feature to allow user to close popup window by clicking outside of popup (as opposed to click close button in top right corner of popup)
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (selectedBook && !event.target.closest('.bookDetails')) {
+                onClose();
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+    }, [selectedBook, onClose]);
+
+    if (!selectedBook) return null;
 
     return (
         <div className="bookDetails">
@@ -35,9 +54,9 @@ const BookDetails = ({ selectedBook, onClose }) => {
                 ) : (
                     <button className="detailsBtn" onClick={handleAddToBookshelf}>Add to Bookshelf</button>
                 )}
-            </div>
-            
+            </div>           
         </div>
     );
 }
+
 export default BookDetails;

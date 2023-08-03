@@ -5,13 +5,18 @@ import BookCard from "../components/BookCard";
 import { HeaderNav } from "../components/HeaderNav";
 import { resetSearchResults } from "../features/bookSlice";
 
+// Main/Home page which also renders search results within same page.
+// User can select from search result items for additional details, which displays as a popup within the same page
+
 const Main = () => {
     const dispatch = useDispatch();
     const books = useSelector((state) => state.books.books);
     const [selectedBook, setSelectedBook] = useState(null);
+
     const handleDetailsClick = (book) => {
         setSelectedBook(book);
     }
+
     const handleCloseClick = () => {
         setSelectedBook(null);
     }
@@ -40,4 +45,5 @@ const Main = () => {
         </div>
     );
 }
+
 export default Main;

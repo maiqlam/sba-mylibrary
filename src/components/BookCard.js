@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addBook, removeBook } from "../features/bookSlice";
 
+// Search result items rendered in card display
 const BookCard = ({ book, onDetailsClick }) => {
     const titleWords = book.title.split(' ');
     const shortTitle = titleWords.slice(0, 12).join(' ');
@@ -8,6 +9,7 @@ const BookCard = ({ book, onDetailsClick }) => {
     const myBookshelf = useSelector(state => state.books.myBookshelf);
     const isInBookshelf = myBookshelf.some(b => b.id === book.id);
 
+// User has option to add to or remove from bookshelf from search results
     const handleAddToBookshelf = () => {
         dispatch(addBook({...book, status: 'Unshelved'}));
     }    
@@ -15,7 +17,9 @@ const BookCard = ({ book, onDetailsClick }) => {
     const handleRemoveFromBookshelf = () => {
         dispatch(removeBook(book.id));
     }
-
+    
+// Rendered search results check for existing book cover from API database, displays text of 'Photo unavailable' if not found
+// If book title exceeds 12 words, title is shortened
     return (
         <ul key={book.id} className="bookCard">
             <div className="bookCover">
@@ -36,4 +40,5 @@ const BookCard = ({ book, onDetailsClick }) => {
         </ul>
     );
 }
+
 export default BookCard;

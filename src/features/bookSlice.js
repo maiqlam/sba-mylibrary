@@ -1,6 +1,8 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// AsyncThunk to fetch book data from GoogleBooks API
+// Default of 30 results to be rendered upon search
 export const fetchBook = createAsyncThunk(
     "books/fetchBook",
     async (searchTerm) => {
@@ -16,53 +18,24 @@ export const fetchBook = createAsyncThunk(
             description: book.volumeInfo.description,
             pageCount: book.volumeInfo.pageCount,
             genre: book.volumeInfo.categories,
-            // selfLink: book.selfLink,
         }));
         return books;
     }
 )
 
+// Updates status of book after user adds to bookshelf and recategorizes as desired
 export const updateStatus = createAction('books/updateStatus');
 
-
-// export const fetchBookDetails = createAsyncThunk(
-//     "bookDetails/fetchBookDetails",
-//     async (selfLink) => {
-//         const response = await axios.get(`${selfLink}`);
-//         const book = response.data;
-//         const details = {
-//             id: book.id,
-//             title: book.volumeInfo.title,
-//             authors: book.volumeInfo.authors,
-//             coverImgLg: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.extraLarge : null,
-//             publisher: book.volumeInfo.publisher,
-//             publishedDate: book.volumeInfo.publishedDate,
-//             description: book.volumeInfo.description,
-//             pageCount: book.volumeInfo.pageCount,
-//             genre: book.volumeInfo.categories,
-//         };
-//         return details;
-//     }
-// )
-
+// Holds book data
 const bookSlice = createSlice({
     name: "books",
     initialState: {
         books: [],
         myBookshelf: [],
-        // bookDetails: null,
-
     },
     reducers: {
         addBook: (state, action) => {
             state.myBookshelf.push(action.payload);
-        },
-        updateBook: (state, action) => {
-            const { bookId, status } = action.payload;
-            const bookIndex = state.myBookshelf.findIndex(book => book.id === bookId);
-            if (bookIndex !== -1) {
-                state.myBookshelf[bookIndex].status = status;
-            }
         },
         removeBook: (state, action) => {
             const bookId = action.payload;
@@ -84,6 +57,6 @@ const bookSlice = createSlice({
     },
 })
 
-export const { addBook, updateBook, removeBook, resetSearchResults } = bookSlice.actions;
+export const { addBook, removeBook, resetSearchResults } = bookSlice.actions;
 
 export default bookSlice.reducer;
