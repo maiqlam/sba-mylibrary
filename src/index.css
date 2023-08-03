@@ -156,3 +156,45 @@ h4, h5 {
   display: block;
   margin-left: auto;
 }
+
+.bookshelf {
+  display: flex;
+}
+.column {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.column h2 {
+  text-align: center;
+  background-color: rgba(192, 189, 189, 0.452);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.column img {
+  width: 80px;
+}
+
+.shelfItem {
+  display: flex;
+  margin: 1rem;
+  padding-top: 20px;
+}
+
+.shelfCover {
+  margin-right: 10px;
+}
+
+
+.shelfCategorize {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+ul {
+  list-style-type: none;
+}
